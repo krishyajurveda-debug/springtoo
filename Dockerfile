@@ -1,6 +1,8 @@
 # This tells Render to pull an image that ALREADY has Java installed
 FROM eclipse-temurin:17-jre-alpine
 
+COPY license.key /opt/stratanode/license.key
+
 # This copies your file into the image
 COPY krishna-1.0.0-PROD-exec.jar ./app.jar
 
