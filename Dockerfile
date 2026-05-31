@@ -1,16 +1,11 @@
-# This tells Render to pull an image that ALREADY has Java installed
 FROM eclipse-temurin:17-jre-alpine
-RUN cat   /etc/machine-id > ./mcid.txt
 
-RUN cat   ./mcid.txt
+# Install dbus-uuidgen (a tool that generates a standard machine ID)
+RUN apk add --no-cache dbus && \
+    dbus-uuidgen > /etc/machine-id
 
-COPY license.key /opt/stratanode/license.key
-
-# This copies your file into the image
-COPY krishna-1.0.0-PROD-exec.jar ./app.jar
-
-# This tells the server to listen on 8090
-EXPOSE 8090
+# Now you can copy it or show it in logs if needed
+RUN cat /etc/machine-id > ./mcid.txt
 
 # This runs the Java command inside the environment that has Java
 #ENTRYPOINT ["java", "-jar", "./app.jar", "--server.port=8090"]
