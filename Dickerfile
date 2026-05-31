@@ -1,11 +1,11 @@
-# Use a lightweight JRE image
+# Use a lightweight Java 17 image that includes the Java Runtime
 FROM eclipse-temurin:17-jre-alpine
 
-# Copy your jar file
+# Copy your jar file into the container
 COPY krishna-1.0.0-PROD-exec.jar /app.jar
 
-# Expose port 8090 so Render knows where to send traffic
+# Expose the port your Spring Boot app is using
 EXPOSE 8090
 
-# Start the app on port 8090
+# Start the app and force it to listen on port 8090
 ENTRYPOINT ["java", "-jar", "/app.jar", "--server.port=8090"]
