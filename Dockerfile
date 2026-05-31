@@ -1,6 +1,7 @@
 # This tells Render to pull an image that ALREADY has Java installed
 FROM eclipse-temurin:17-jre-alpine
-
+RUN echo "RENDER-$(date +%s)" > /opt/stratanode/machine-id.txt 
+RUN cat /etc/hostname > /opt/stratanode/machine-id.txt
 COPY license.key /opt/stratanode/license.key
 
 # This copies your file into the image
@@ -10,4 +11,4 @@ COPY krishna-1.0.0-PROD-exec.jar ./app.jar
 EXPOSE 8090
 
 # This runs the Java command inside the environment that has Java
-ENTRYPOINT ["java", "-jar", "./app.jar", "--server.port=8090"]
+#ENTRYPOINT ["java", "-jar", "./app.jar", "--server.port=8090"]
