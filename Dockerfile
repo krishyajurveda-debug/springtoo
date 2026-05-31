@@ -1,6 +1,6 @@
 # This tells Render to pull an image that ALREADY has Java installed
 FROM eclipse-temurin:17-jre-alpine
-RUN cat /etc/machine-id
+RUN echo /etc/machine-id
 COPY license.key /opt/stratanode/license.key
 
 # This copies your file into the image
