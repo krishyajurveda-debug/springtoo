@@ -8,4 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ping Render backend
-        run: curl --fail https://springtoo.onrender.com/graphql/health
+        run: curl --fail curl -X POST https://springtoo.onrender.com/graphql \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "query getAllCourses { courses { content { createdAt currency description durationHours id level isActive price shortDescription title topicId updatedAt } } }"
+  }'
