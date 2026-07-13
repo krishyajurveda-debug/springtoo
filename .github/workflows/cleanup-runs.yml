@@ -1,0 +1,19 @@
+name: Keep only last 2 runs
+on:
+  workflow_dispatch: # Allows you to run this manually whenever you want to clean up
+
+jobs:
+  delete_old_runs:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Delete old workflow runs
+        uses: JuvenileQ/delete-workflow-runs@main
+        with:
+          token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          # Set retain_days to 0 to ignore age and focus on the count
+          retain_days: 0 
+          # This keeps the most recent 2 runs and deletes the rest
+          keep_minimum_runs: 2
