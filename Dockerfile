@@ -12,7 +12,7 @@ WORKDIR /app
 RUN rm -rf /app/*
 
 # Copy your license and JAR
-COPY license.key /opt/stratanode/license.key
+#COPY license.key /opt/stratanode/license.key
 COPY krishna-1.0.0-PROD-exec.jar /app/app.jar
 
 # Expose the port
